@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Keshav Garg — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#6ee7b7;
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#e6eef6;background:linear-gradient(180deg,#071129 0%, #071833 45%, #081228 100%);-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}
+    header{position:sticky;top:0;backdrop-filter: blur(6px);background:linear-gradient(180deg, rgba(7,18,41,0.6), rgba(7,18,41,0.3));border-bottom:1px solid rgba(255,255,255,0.03);z-index:40}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    nav{display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;flex-direction:column}
+    .logo h1{margin:0;font-size:20px;letter-spacing:0.6px}
+    .logo p{margin:0;font-size:12px;color:var(--muted)}
+    .nav-links{display:flex;gap:18px}
+    .btn{padding:8px 14px;border-radius:10px;background:linear-gradient(90deg, rgba(110,231,183,0.12), rgba(110,231,183,0.06));border:1px solid rgba(110,231,183,0.12);font-weight:600}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:36px;align-items:center;padding:64px 0}
+    .hero-left h2{margin:0;font-size:34px}
+    .eyebrow{color:var(--accent);font-weight:700;margin-bottom:8px}
+    .lead{color:#cfe7d9;margin-top:12px;line-height:1.6}
+    .subtitle{margin-top:20px;color:var(--muted)}
+
+    /* card */
+    .card{background:linear-gradient(180deg,var(--card), rgba(5,10,20,0.7));border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* decorative right column */
+    .hero-right{min-height:260px;padding:22px;display:flex;flex-direction:column;gap:12px}
+    .profile-meta{display:flex;gap:12px;align-items:center}
+    .avatar{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,#0b1b2b,#072034);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;color:var(--accent)}
+    .meta-text{color:var(--muted)}
+
+    /* Sections */
+    section{padding:56px 0;border-bottom:1px dashed rgba(255,255,255,0.02)}
+    h3{margin:0 0 12px 0}
+    p.lead-small{color:var(--muted);margin:0 0 18px 0}
+
+    /* Skill chips */
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:600;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+
+    /* Services grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service h4{margin:6px 0}
+    .feature{color:var(--muted);font-size:14px}
+
+    /* Portfolio */
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .project{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .project .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+    .project h4{margin:0 0 10px 0}
+    .project button{margin-top:10px;padding:8px 12px;border-radius:8px;border:none;background:transparent;color:var(--accent);cursor:pointer}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    form input, form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#e6eef6}
+    form label{display:block;margin-bottom:6px;color:var(--muted);font-size:13px}
+    form button{margin-top:10px;padding:12px 16px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent), #5eead4);color:#04201a;font-weight:700;cursor:pointer}
+
+    footer{padding:36px 0;color:var(--muted);text-align:center}
+
+    /* responsive */
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      .nav-links{display:none}
+      header .container{padding:16px}
+      .portfolio-grid{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+    }
+
+    /* Decorative animated background (mathy icons) */
+    .bg-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.12}
+    .math{position:absolute;font-weight:800;font-size:28px;color:rgba(110,231,183,0.14);transform:rotate(-15deg)}
+
+    /* Project landing styles */
+    .project-landing{padding:36px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .tag{background:rgba(110,231,183,0.06);padding:6px 10px;border-radius:999px;font-weight:700;color:var(--accent);border:1px solid rgba(110,231,183,0.08)}
+    .stats{display:flex;gap:18px;margin-top:12px}
+    .stat{background:var(--glass);padding:12px;border-radius:10px;min-width:120px;text-align:center}
+    .back-btn{display:inline-block;margin-top:16px;padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--accent)}
+  </style>
+</head>
+<body>
+  <div class="bg-canvas" aria-hidden>
+    <div class="math" style="top:12%;left:6%">π</div>
+    <div class="math" style="top:20%;left:60%;font-size:44px">Σ</div>
+    <div class="math" style="top:72%;left:20%;transform:rotate(6deg)">e</div>
+    <div class="math" style="top:54%;left:82%;font-size:32px">√</div>
+    <div class="math" style="top:36%;left:40%;font-size:26px">+</div>
+    <div class="math" style="top:84%;left:6%;font-size:22px">−</div>
+  </div>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1>Keshav<br/>Garg.</h1>
+          <p>Web Designer</p>
+        </div>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#experience">Experience</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="position:relative;z-index:10">
+    <!-- HERO + Intro (unchanged from original) -->
+    <section class="hero" id="home">
+      <div class="hero-left">
+        <div class="eyebrow">Keshav<br/>Garg.</div>
+        <h2>Web Designer<br/><span style="color:var(--muted);font-weight:500">Turning ideas into intelligent systems where hardware meets software.</span></h2>
+        <p class="lead">Keshava GargLike<br/>— Introduction</p>
+
+        <div style="margin-top:18px" class="card">
+          <h3>My story<br/>— Introduction</h3>
+          <p class="lead-small">About Me<br/>I'm a curious technologist with a deep interest in IoT, computer science, and intelligent programming. My passion lies in bridging the gap between hardware and software.
+
+With a mindset focused on lifelong learning, I continuously explore new technologies to craft smart, responsive, and purpose-driven solutions that deliver meaningful experiences.</p>
+
+          <h4>Core Values</h4>
+          <ul class="lead-small">
+            <li>Continuous Learning & Innovation</li>
+            <li>Bridging Hardware & Software</li>
+            <li>Purpose-Driven Solutions</li>
+            <li>User-Centric Design</li>
+          </ul>
+
+          <h4>Educational Background</h4>
+          <p class="lead-small"><strong>12th Grade (2024)</strong><br/>KDPS, Delhi<br/>Focus on Science & Technology</p>
+          <p class="lead-small"><strong>10th Grade (2022)</strong><br/>Swami Vivekananda Public School, Yamuna Nagar<br/>Foundation in Core Subjects</p>
+
+          <blockquote style="color:var(--muted);font-style:italic">"Education is not preparation for life; education is life itself." - My approach to continuous learning.</blockquote>
+        </div>
+      </div>
+
+      <aside class="hero-right card">
+        <div class="profile-meta">
+          <div class="avatar">KG</div>
+          <div>
+            <div style="font-weight:700">Keshav Garg.</div>
+            <div class="meta-text">Web Designer — Turning ideas into intelligent systems</div>
+          </div>
+        </div>
+
+        <div style="margin-top:10px">
+          <h4>Contact</h4>
+          <div class="meta-text">Email<br/><a href="mailto:keshavgarg1740@gmail.com">keshavgarg1740@gmail.com</a></div>
+          <div style="margin-top:8px" class="meta-text">Availability<br/>Currently open to internships, freelance projects, and collaboration opportunities. Based in India, available for remote work globally.</div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px">
+          <a class="btn" href="#portfolio">View My Work</a>
+          <a class="btn" href="#contact">Let's Work Together</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h3>Skills & Expertise</h3>
+      <p class="lead-small">Soft Skills</p>
+      <div class="chips">
+        <div class="chip">Teamwork</div>
+        <div class="chip">Leadership</div>
+        <div class="chip">Communication</div>
+      </div>
+
+      <p class="lead-small" style="margin-top:16px">Technical Fields</p>
+      <div class="chips">
+        <div class="chip">IoT Development</div>
+        <div class="chip">Web Designing</div>
+        <div class="chip">General Technology</div>
+        <div class="chip">AI & ML (exploring)</div>
+      </div>
+
+      <p class="lead-small" style="margin-top:14px">More Skills Coming Soon<br/>I'm constantly learning and expanding my skill set. Stay tuned for updates as I explore new technologies and deepen my expertise in emerging fields.</p>
+
+      <p class="lead-small">Continuously Updating</p>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h3>Services</h3>
+      <p class="lead-small">Transforming ideas into intelligent solutions through innovative technology and thoughtful design.</p>
+      <div class="grid" style="margin-top:16px">
+        <div class="service card">
+          <h4>IoT Product Designing</h4>
+          <p class="feature">Concept-to-prototype smart systems that seamlessly integrate hardware with cloud and software interfaces.</p>
+          <ul class="feature" style="margin-top:10px">
+            <li>Hardware-Software Integration</li>
+            <li>Cloud Connectivity</li>
+            <li>Smart Automation</li>
+            <li>Prototype Development</li>
+          </ul>
+        </div>
+        <div class="service card">
+          <h4>Web Designing</h4>
+          <p class="feature">Modern, responsive, and visually engaging websites that deliver exceptional user experiences across all devices and platforms.</p>
+          <ul class="feature" style="margin-top:10px">
+            <li>Responsive Design</li>
+            <li>User Experience Focus</li>
+            <li>Modern Frameworks</li>
+            <li>Performance Optimization</li>
+          </ul>
+        </div>
+        <div class="service card">
+          <h4>Consulting & Collaboration</h4>
+          <p class="feature">Guidance on bridging hardware and software, prototyping, and taking projects from idea to pilot.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <a class="btn" href="#contact">Ready to Start Your Project? Let's work together to bring your ideas to life with cutting-edge technology and innovative design.</a>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO GRID (View Details link scrolls to landing sections) -->
+    <section id="portfolio">
+      <h3>Portfolio</h3>
+      <p class="lead-small">Showcasing innovative projects that blend technology with purpose.</p>
+
+      <div class="portfolio-grid" style="margin-top:16px">
+        <div class="project card">
+          <div class="meta">IoT · Solar Energy · Automation</div>
+          <h4>Dual Axis Solar Tracking System</h4>
+          <p>Intelligent solar panel system that automatically tracks the sun's position for maximum energy efficiency.</p>
+          <button class="view-btn" data-target="dual-axis">View Details</button>
+        </div>
+
+        <div class="project card">
+          <div class="meta">IoT · Smart Home · Environmental</div>
+          <h4>IoT Smart Exhaust Fan</h4>
+          <p>Smart exhaust fan that monitors gas levels, temperature, and humidity with mobile app alerts and remote control.</p>
+          <button class="view-btn" data-target="exhaust">View Details</button>
+        </div>
+
+        <div class="project card">
+          <div class="meta">IoT · Home Automation · Voice Control</div>
+          <h4>Smart Switch Board</h4>
+          <p>Smart switch board enabling remote control of any device with voice control, scheduling, and mobile app integration.</p>
+          <button class="view-btn" data-target="switch">View Details</button>
+        </div>
+
+        <div class="project card">
+          <div class="meta">IoT · Wireless · Home Electronics</div>
+          <h4>Wireless Bell System</h4>
+          <p>Wireless bell system that plugs into any socket with 30-meter range for convenient home and office communication.</p>
+          <button class="view-btn" data-target="bell">View Details</button>
+        </div>
+
+        <div class="project card">
+          <div class="meta">IIoT · Industrial · Energy Monitoring</div>
+          <h4>Smart Electric Meter</h4>
+          <p>Project for monitoring current, voltage, and power consumption with remote access and machine control capabilities.</p>
+          <button class="view-btn" data-target="meter">View Details</button>
+        </div>
+
+        <div class="project card">
+          <div class="meta">More projects coming soon</div>
+          <h4>More projects coming soon</h4>
+          <p>Keep an eye out — additional projects and case studies will be published soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT LANDING SECTIONS (hidden by default, revealed on View Details) -->
+    <section id="project-sections" style="padding-top:8px;">
+
+      <div id="dual-axis" class="project-landing card" style="display:none;margin-bottom:24px;">
+        <div class="tags"><span class="tag">IoT</span><span class="tag">Solar Energy</span><span class="tag">Automation</span></div>
+        <h3>Dual Axis Solar Tracking System</h3>
+        <p class="lead-small">Project Overview<br>The Dual Axis Solar Tracking System is a student project designed to maximize solar energy capture by automatically adjusting solar panels to follow the sun's movement throughout the day. This system improves energy efficiency compared to traditional static solar installations.
+
+Using sensors and control algorithms, the system tracks the sun's position across both horizontal and vertical axes, ensuring better panel orientation for improved energy generation from sunrise to sunset.</p>
+
+        <h4>Key Features</h4>
+        <ul>
+          <li>Dual-Axis Tracking: Horizontal and vertical movement for complete sun tracking</li>
+          <li>Real-time Positioning: Advanced sensors continuously monitor sun position</li>
+          <li>Weather Protection: Automatic safety positioning during adverse weather</li>
+          <li>Manual Control: Basic monitoring and control capabilities</li>
+          <li>Energy Optimization: 20-35% increase in energy generation</li>
+        </ul>
+
+        <h4>Technical Specifications</h4>
+        <p><strong>Hardware Components</strong></p>
+        <ul>
+          <li>Servo motors for movement</li>
+          <li>LDR sensors for light detection</li>
+          <li>Microcontroller for system control</li>
+          <li>Basic position feedback</li>
+        </ul>
+
+        <h4>System Capabilities & Performance</h4>
+        <ul>
+          <li>Horizontal rotation capability</li>
+          <li>Vertical tilt movement</li>
+          <li>Sun tracking functionality</li>
+          <li>Basic position monitoring</li>
+        </ul>
+
+        <div class="stats">
+          <div class="stat"><strong>35%</strong><div style="color:var(--muted);font-size:13px">Increased Energy Output</div></div>
+          <div class="stat"><strong>95%</strong><div style="color:var(--muted);font-size:13px">System Efficiency</div></div>
+          <div class="stat"><strong>3-4 yrs</strong><div style="color:var(--muted);font-size:13px">ROI Period</div></div>
+        </div>
+
+        <h4 style="margin-top:14px">Applications</h4>
+        <ul>
+          <li>Residential solar installations</li>
+          <li>Commercial solar farms</li>
+          <li>Industrial energy systems</li>
+          <li>Research facilities</li>
+          <li>Remote monitoring stations</li>
+        </ul>
+
+        <a class="back-btn" data-scroll-to="#portfolio">Back to Portfolio</a>
+      </div>
+
+      <div id="exhaust" class="project-landing card" style="display:none;margin-bottom:24px;">
+        <div class="tags"><span class="tag">IoT</span><span class="tag">Smart Home</span><span class="tag">Environmental</span></div>
+        <h3>IoT Smart Exhaust Fan</h3>
+        <p class="lead-small">Project Overview<br>The IoT Smart Exhaust Fan is an intelligent ventilation system designed to automatically monitor and respond to environmental conditions in your home or workspace. This advanced system continuously tracks gas levels, temperature, and humidity to ensure optimal air quality and safety.
+
+With real-time monitoring capabilities and mobile app integration, this smart exhaust fan provides peace of mind by automatically activating when dangerous gas levels are detected and sending instant alerts to your smartphone, no matter where you are in the world.</p>
+
+        <h4>Key Features</h4>
+        <ul>
+          <li>Multi-Gas Detection: Monitors LPG, CO2, and other harmful gases in real-time</li>
+          <li>Environmental Monitoring: Tracks temperature and humidity levels</li>
+          <li>Mobile App Integration: Real-time notifications and remote control</li>
+          <li>Automatic Activation: Fan starts automatically when dangerous levels detected</li>
+          <li>Global Access: Monitor and control from anywhere in the world</li>
+        </ul>
+
+        <h4>Technical Specifications</h4>
+        <p><strong>Sensors & Detection</strong></p>
+        <ul>
+          <li>MQ-2 gas sensor for LPG detection</li>
+          <li>CO2 sensor for air quality</li>
+          <li>DHT22 for temperature & humidity</li>
+          <li>Motion sensor for occupancy</li>
+        </ul>
+        <p><strong>Connectivity & Control</strong></p>
+        <ul>
+          <li>WiFi enabled for internet connectivity</li>
+          <li>Mobile app for iOS & Android</li>
+          <li>Real-time data transmission</li>
+          <li>Cloud-based monitoring</li>
+        </ul>
+
+        <h4>Safety Features</h4>
+        <p><strong>Emergency Response</strong> Instant activation when gas levels exceed safe thresholds with immediate mobile alerts.</p>
+        <p><strong>Preventive Monitoring</strong> Continuous monitoring prevents dangerous gas accumulation before it becomes hazardous.</p>
+
+        <h4>Mobile App Features</h4>
+        <ul>
+          <li>Real-time environmental data</li>
+          <li>Instant gas leak alerts</li>
+          <li>Remote fan control</li>
+          <li>Historical data graphs</li>
+          <li>Customizable alert thresholds</li>
+          <li>Multiple device management</li>
+        </ul>
+
+        <h4>Installation Areas</h4>
+        <ul>
+          <li>Kitchen areas</li>
+          <li>Bathroom ventilation</li>
+          <li>Basement monitoring</li>
+          <li>Garage ventilation</li>
+          <li>Industrial workspaces</li>
+          <li>Laboratory environments</li>
+        </ul>
+
+        <div class="stats">
+          <div class="stat"><strong>24/7</strong><div style="color:var(--muted);font-size:13px">Continuous Monitoring</div></div>
+          <div class="stat"><strong>Instant</strong><div style="color:var(--muted);font-size:13px">Alert Notifications</div></div>
+          <div class="stat"><strong>Global</strong><div style="color:var(--muted);font-size:13px">Remote Access</div></div>
+        </div>
+
+        <a class="back-btn" data-scroll-to="#portfolio">Back to Portfolio</a>
+      </div>
+
+      <div id="switch" class="project-landing card" style="display:none;margin-bottom:24px;">
+        <div class="tags"><span class="tag">IoT</span><span class="tag">Home Automation</span><span class="tag">Voice Control</span></div>
+        <h3>Smart Switch Board</h3>
+        <p class="lead-small">Project Overview<br/>The Smart Switch Board is a student project that transforms traditional electrical devices into smart, remotely controllable appliances. This system enables control of lights, fans, and other electrical devices through a smartphone or voice commands.
+
+With scheduling capabilities, voice integration with Alexa and Google Home, and internet connectivity, this project brings smart home functionality to existing electrical infrastructure without requiring device replacement.</p>
+
+        <h4>Key Features</h4>
+        <ul>
+          <li>Universal Compatibility: Works with any electrical device or appliance</li>
+          <li>Remote Control: Control devices from anywhere via mobile app</li>
+          <li>Voice Integration: Compatible with Alexa and Google Home</li>
+          <li>Task Automation: Schedule devices to turn on/off automatically</li>
+        </ul>
+
+        <h4>Technical Specifications</h4>
+        <p><strong>Hardware Components</strong></p>
+        <ul>
+          <li>Controller unit</li>
+          <li>Relay modules for switching</li>
+          <li>WiFi connectivity module</li>
+          <li>Mobile app interface</li>
+        </ul>
+
+        <h4>Smart Features</h4>
+        <ul>
+          <li>Real-time device status</li>
+          <li>Scheduling & timers</li>
+          <li>Scene automation</li>
+          <li>Voice control integration</li>
+        </ul>
+
+        <h4>Voice Control Integration</h4>
+        <p>Examples:</p>
+        <blockquote style="color:var(--muted);">"Alexa, turn on the living room lights"<br/>
+        "Alexa, schedule to turn on AC at 6:30"<br/>
+        "Hey Google, turn off all lights"<br/>
+        "Hey Google, turn off bread toaster after 2 min"</blockquote>
+
+        <h4>Automation Scenarios</h4>
+        <ul>
+          <li>Morning Routine — Automatically turn on lights, start coffee maker, and adjust thermostat at 7 AM</li>
+          <li>Away Mode — Turn off all devices and activate security lighting when leaving home</li>
+          <li>Night Mode — Gradually dim lights and turn off non-essential devices at bedtime</li>
+        </ul>
+
+        <h4>Mobile App Features</h4>
+        <ul>
+          <li>Device on/off control</li>
+          <li>Dimming & speed control</li>
+          <li>Real-time status monitoring</li>
+          <li>Custom automation rules</li>
+          <li>Scene management</li>
+          <li>Remote access from anywhere</li>
+        </ul>
+
+        <div class="stats">
+          <div class="stat"><strong>30%</strong><div style="color:var(--muted);font-size:13px">Energy Savings</div></div>
+          <div class="stat"><strong>24/7</strong><div style="color:var(--muted);font-size:13px">Remote Access</div></div>
+          <div class="stat"><strong>Easy</strong><div style="color:var(--muted);font-size:13px">Installation</div></div>
+        </div>
+
+        <a class="back-btn" data-scroll-to="#portfolio">Back to Portfolio</a>
+      </div>
+
+      <div id="bell" class="project-landing card" style="display:none;margin-bottom:24px;">
+        <div class="tags"><span class="tag">IoT</span><span class="tag">Wireless</span><span class="tag">Home Electronics</span></div>
+        <h3>Wireless Bell System</h3>
+        <p class="lead-small">Project Overview<br/>The Wireless Bell System is a student project that creates a simple communication device that eliminates traditional doorbell installation hassles. This system plugs directly into any standard electrical socket, providing reliable operation without the need for battery changes or complex wiring.
+
+Designed as a learning project for home and office environments, this wireless bell system offers communication across locations with its 30-meter operating range and compact design.</p>
+
+        <h4>Key Features</h4>
+        <ul>
+          <li>No Battery Required: Powered directly from electrical socket for years of operation</li>
+          <li>30-Meter Range: Reliable wireless communication across large spaces</li>
+          <li>Plug & Play: Simple installation - just plug into any electrical socket</li>
+          <li>Compact Design: Sleek and unobtrusive form factor</li>
+          <li>Multi-Location Support: Perfect for home and office communication</li>
+        </ul>
+
+        <h4>Technical Specifications</h4>
+        <ul>
+          <li>Direct plug-in power (110V/220V)</li>
+          <li>433MHz wireless frequency</li>
+          <li>30-meter transmission range</li>
+          <li>Low power consumption design</li>
+        </ul>
+
+        <h4>Advantages Over Traditional Doorbells</h4>
+        <ul>
+          <li>No wiring required</li>
+          <li>DIY installation in minutes</li>
+          <li>Flexible placement anywhere</li>
+          <li>Easy to relocate</li>
+          <li>No battery maintenance</li>
+        </ul>
+
+        <div class="stats">
+          <div class="stat"><strong>30m</strong><div style="color:var(--muted);font-size:13px">Wireless Range</div></div>
+          <div class="stat"><strong>360°</strong><div style="color:var(--muted);font-size:13px">Coverage Area</div></div>
+          <div class="stat"><strong>Multiple</strong><div style="color:var(--muted);font-size:13px">Floors Supported</div></div>
+        </div>
+
+        <a class="back-btn" data-scroll-to="#portfolio">Back to Portfolio</a>
+      </div>
+
+      <div id="meter" class="project-landing card" style="display:none;margin-bottom:24px;">
+        <div class="tags"><span class="tag">IIoT</span><span class="tag">Industrial</span><span class="tag">Energy Monitoring</span></div>
+        <h3>Smart Electric Meter</h3>
+        <p class="lead-small">Project Overview<br/>The Smart Electric Meter is a student project designed for energy monitoring. This system provides measurement of current, voltage, and power consumption for machines or electrical loads, helping to understand energy usage patterns and estimate billing.
+
+With power factor monitoring capabilities and remote access features, this smart meter project helps monitor energy consumption, estimate bills, and provides remote machine control capabilities through a mobile interface.</p>
+
+        <h4>Key Features</h4>
+        <ul>
+          <li>Comprehensive Monitoring: Measures current, voltage, and power consumption in real-time</li>
+          <li>Project Level: Designed for monitoring loads in educational and small-scale applications</li>
+          <li>Power Factor Analysis: Monitors power factor across transmission lines for efficiency</li>
+          <li>Global Access: Remote monitoring and control from anywhere in the world</li>
+          <li>Energy Analytics: kWh consumption tracking for accurate billing estimation</li>
+        </ul>
+
+        <h4>Technical Specifications</h4>
+        <ul>
+          <li>Voltage: 0-600V AC/DC</li>
+          <li>Current: 0-100A (CT expandable)</li>
+          <li>Power: Active, Reactive, Apparent</li>
+          <li>Frequency: 45-65 Hz</li>
+          <li>Power Factor: 0.00-1.00</li>
+        </ul>
+
+        <h4>Communication & Control</h4>
+        <ul>
+          <li>WiFi/Ethernet connectivity</li>
+          <li>Real-time data transmission</li>
+          <li>Cloud-based analytics</li>
+          <li>Mobile app integration</li>
+          <li>Industrial protocols support</li>
+        </ul>
+
+        <h4>Energy Efficiency Features & Applications</h4>
+        <ul>
+          <li>Power Factor Optimization</li>
+          <li>Load Analysis</li>
+          <li>Demand Management</li>
+          <li>Manufacturing — Production line monitoring</li>
+          <li>Infrastructure — Building energy management</li>
+        </ul>
+
+        <div class="stats">
+          <div class="stat"><strong>±0.5%</strong><div style="color:var(--muted);font-size:13px">Measurement Accuracy</div></div>
+          <div class="stat"><strong>1s</strong><div style="color:var(--muted);font-size:13px">Real-time Updates</div></div>
+          <div class="stat"><strong>24/7</strong><div style="color:var(--muted);font-size:13px">Continuous Monitoring</div></div>
+        </div>
+
+        <h4>Mobile App Features</h4>
+        <ul>
+          <li>Real-time energy consumption</li>
+          <li>Historical data analysis</li>
+          <li>Cost estimation & billing</li>
+          <li>Power factor monitoring</li>
+          <li>Remote machine control</li>
+          <li>Alert notifications</li>
+        </ul>
+
+        <div class="stats" style="margin-top:12px">
+          <div class="stat"><strong>15-30%</strong><div style="color:var(--muted);font-size:13px">Energy Savings</div></div>
+          <div class="stat"><strong>Predictive</strong><div style="color:var(--muted);font-size:13px">Maintenance</div></div>
+        </div>
+
+        <a class="back-btn" data-scroll-to="#portfolio">Back to Portfolio</a>
+      </div>
+
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h3>Experience</h3>
+      <p class="lead-small">Professional journey and career milestones in technology and innovation.</p>
+      <div class="card" style="margin-top:12px">
+        <p><strong>Work Experience Coming Soon</strong><br/>Currently focused on building skills and working on exciting projects. Professional experience will be updated here as my career progresses.</p>
+        <ul class="lead-small">
+          <li>Skill Building</li>
+          <li>Project Development</li>
+          <li>Learning & Growth</li>
+        </ul>
+        <p class="lead-small">Open to internships, collaborations, and entry-level opportunities</p>
+        <p class="lead-small">Timeline ready for professional milestones</p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h3>Get In Touch</h3>
+      <p class="lead-small">Ready to collaborate on your next project? Let's discuss how we can bring your ideas to life.</p>
+
+      <div class="contact-grid">
+        <form class="card" onsubmit="handleContact(event)">
+          <label for="name">Name</label>
+          <input id="name" placeholder="Your full name" required />
+
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="your.email@example.com" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" rows="6" placeholder="Tell me about your project, ideas, or how we can collaborate..." required></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+
+        <aside class="card" style="padding:20px">
+          <h4>Let's Connect</h4>
+          <p class="lead-small">I'm always excited to discuss new opportunities, collaborate on innovative projects, or simply chat about technology and its possibilities.</p>
+          <p><strong>Email</strong><br/><a href="mailto:keshavgarg1740@gmail.com">keshavgarg1740@gmail.com</a></p>
+          <p><strong>LinkedIn</strong><br/><a href="#">Connect on LinkedIn</a></p>
+          <p><strong>GitHub</strong><br/><a href="#">View my repositories</a></p>
+          <p><strong>Availability</strong><br/>Currently open to internships, freelance projects, and collaboration opportunities. Based in India, available for remote work globally.</p>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; <span id="year"></span> Keshav Garg. All rights reserved.</p>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // simple contact handler — opens mail client with composed message
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent('Portfolio contact from ' + name);
+      const body = encodeURIComponent('Name: ' + name + '
+Email: ' + email + '
+
+' + message);
+      window.location.href = `mailto:keshavgarg1740@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const href = a.getAttribute('href');
+        if(href.length>1){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      })
+    })
+
+    // View details buttons: reveal landing sections and scroll to them
+    document.querySelectorAll('.view-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const target = btn.dataset.target;
+        if(!target) return;
+        // hide all project sections
+        document.querySelectorAll('#project-sections > div').forEach(d=>d.style.display='none');
+        const el = document.getElementById(target);
+        if(el){
+          el.style.display = 'block';
+          el.scrollIntoView({behavior:'smooth',block:'start'});
+          // push hash without jumping
+          history.replaceState(null, '', '#'+target);
+        }
+      })
+    })
+
+    // Back buttons for project sections
+    document.querySelectorAll('.back-btn').forEach(b=>{
+      b.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const scrollTo = b.dataset.scrollTo || '#portfolio';
+        // hide the project section containing this button
+        let parent = b.closest('.project-landing');
+        if(parent) parent.style.display='none';
+        document.querySelector(scrollTo).scrollIntoView({behavior:'smooth',block:'start'});
+        history.replaceState(null, '', '#portfolio');
+      })
+    })
+
+    // On load, if URL contains a hash to a project, show it
+    window.addEventListener('load', ()=>{
+      const hash = location.hash.replace('#','');
+      if(hash){
+        const el = document.getElementById(hash);
+        if(el){
+          document.querySelectorAll('#project-sections > div').forEach(d=>d.style.display='none');
+          el.style.display='block';
+          setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}), 200);
+        }
+      }
+    })
+  </script>
+</body>
+</html>
